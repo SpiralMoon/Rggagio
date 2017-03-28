@@ -146,7 +146,7 @@ p {
     color: #fdcc52;
   }
 }
-header {
+header  {
   position: relative;
   width: 100%;
   min-height: auto;
@@ -159,6 +159,7 @@ header {
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   color: white;
 }
+
 header .header-content {
   text-align: center;
   padding: 150px 0 50px;

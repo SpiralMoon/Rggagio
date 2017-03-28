@@ -156,14 +156,22 @@ p {
     }
 }
 
-header {
+header[class="main"] {
     position: relative;
     width: 100%;
     min-height: auto;
     overflow-y: hidden;
     background: url("../img/blackboard.png");
     background-size: 100%;
+}
 
+header[class="game"] {
+    position: relative;
+    width: 100%;
+    min-height: auto;
+    overflow-y: hidden;
+    background: url("../img/blackboard - 복사본.png");
+    background-size: 100%;
 }
 
 header .header-content {
