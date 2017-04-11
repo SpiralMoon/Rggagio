@@ -43,7 +43,7 @@
                     data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand page-scroll" href="index.html">
+            <a class="navbar-brand page-scroll" href="#backModal" data-toggle="modal">
                 <i class="glyphicon glyphicon-arrow-left"></i>
             </a>
         </div>
@@ -80,12 +80,14 @@
                     <div class="row">
                         <div class="col-md-12">
                             <canvas class="board"
-                                    style="border: solid; width: 100%; height: 500px; background-image: url('img/desk.png');">
+                                    style="border: solid; width: 100%; height: 500px; background-image: url('img/game/desk.png');">
                             </canvas>
                         </div>
                     </div>
                     <div class="row" align="right">
-                        <a class="btn">항복</a>
+                        <button type="button" class="btn btn-default btn-lg" href="#backModal" data-toggle="modal">
+                            <span class="glyphicon glyphicon-flag" aria-hidden="true"></span> 항복
+                        </button>
                     </div>
                 </div>
             </div>
@@ -126,7 +128,29 @@
                 <p>초대코드 출력</p>
             </div>
             <div class="modal-footer">
-                <button style="width: 45%;" type="button" class="btn btn-default" data-dismiss="modal">Cancel
+                <button style="width: 45%;" type="button" class="btn btn-default" data-dismiss="modal">확인
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="backModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">
+                    <span class="glyphicon glyphicon-flag" aria-hidden="true"></span> 항복선언
+                </h4>
+            </div>
+            <div class="modal-body">
+                <p>현재 진행중인 게임에 <strong>항복</strong>을 선언하고 메인으로 나가시겠습니까?</p>
+            </div>
+            <div class="modal-footer">
+                <button style="width: 45%;" type="button" class="btn btn-default" data-dismiss="modal">항복
+                </button>
+                <button style="width: 45%;" type="button" class="btn btn-default" data-dismiss="modal">취소
                 </button>
             </div>
         </div>
@@ -147,9 +171,17 @@
 
 <!-- My JavaScript -->
 <script src="js/chat.js"></script>
-<script type="javascript">
+<script src="js/timer.js"></script>
+<script>
+    runTimer();
+
     $(document).ready(function () {
 
+        //Enter가 눌리면 채팅 데이터 전송
+        $("#chatField").keydown(function (event) {
+            if (event.keyCode == 13)
+                onSendChat(id, nickname, message);
+        });
     });
 </script>
 
