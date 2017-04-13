@@ -1,6 +1,11 @@
 @font-face {
-    font-family: "marie";
-    src: url("../font/CFMarieEve.ttf"); <!-- 폰트 수정해야함 -->
+    font-family: "uhbee";
+    src: url("../font/Uhbee Dongkyung.ttf");
+}
+
+@font-face {
+    font-family: "uhbee-bold";
+    src: url("../font/Uhbee Dongkyung BOLD.ttf");
 }
 
 .piece {
@@ -34,12 +39,13 @@
 }
 
 .chat {
-    color: white;
-    font-size: 20px;
+    color: #ffffff;
+    font-size: 25px;
     margin: 0px;
     margin-left: 5px;
     margin-right: 5px;
-    font-family: "marie";
+    font-family: "uhbee";
+    word-break: break-all;
 }
 
 .board {
