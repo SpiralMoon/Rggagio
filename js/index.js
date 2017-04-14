@@ -42,7 +42,7 @@ Physics({
         width: 290,
         height: 25
     }); chalk.view = renderer.createDisplay('sprite', {
-        texture: 'img/chalk.png',
+        texture: '../img/piece/piece_chalk.png',
         scale: {
             x: 0.1,
             y: 0.1
