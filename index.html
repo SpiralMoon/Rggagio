@@ -31,24 +31,7 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <!-- User CSS -->
-    <style>
-        .btn {
-            width: 300px;
-            margin-left: 10px;
-            margin-right: 10px;
-        }
-
-        .btn:hover {
-            border-color: white;
-            background-color: white;
-            color: black;
-        }
-
-        .serious {
-            font-family: 궁서;
-        }
-    </style>
+    <link href="css/rggagio.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -121,8 +104,9 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="section-heading">
+                        <br><br><br>
                         <h2 class="serious" style="color:crimson">알까기오의 주인공들</h2>
-                        <p class="text-muted serious">학용품은 더 이상 공부하는 용도가 아닙니다. 학용품을 들고 싸우십시오.</p>
+                        <p class="text-muted serious">어짜피 공부도 안하는 니들한테 학용품은 더 이상 공부하는 도구가 아닙니다. 학용품을 들고 싸우십시오.</p>
                     </div>
                 </div>
             </div>
@@ -132,52 +116,58 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="feature-item">
-                                    <i class="glyphicon glyphicon-comment text-primary"></i>
-                                    <h3>Chatting</h3>
-                                    <p class="text-muted">Ready to use HTML/CSS device mockups, no Photoshop
-                                        required!</p>
+                                    <div class="piece-div">
+                                        <img src="img/piece/piece_ruler.png" class="piece">
+                                    </div>
+                                    <h3>15cm자</h3>
+                                    <p class="text-muted">지우개 똥을 만들때 썼던 자</p>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="feature-item">
-                                    <i class="glyphicon glyphicon-comment text-primary"></i>
-                                    <h3>Chatting</h3>
-                                    <p class="text-muted">Ready to use HTML/CSS device mockups, no Photoshop
-                                        required!</p>
+                                    <div class="piece-div">
+                                        <img src="img/piece/piece_ballpen.png" class="piece">
+                                    </div>
+                                    <h3>볼펜</h3>
+                                    <p class="text-muted">집에서 굴러다니는 볼펜. 가격은 200원</p>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="feature-item">
-                                    <i class="glyphicon glyphicon-pencil text-primary"></i>
-                                    <h3>Draw</h3>
-                                    <p class="text-muted">Put an image, video, animation, or anything else in the
-                                        screen!</p>
+                                    <div class="piece-div">
+                                        <img src="img/piece/piece_chalk.png" class="piece">
+                                    </div>
+                                    <h3>분필</h3>
+                                    <p class="text-muted">자주 부러진다.</p>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="feature-item">
-                                    <i class="glyphicon glyphicon-list-alt text-primary"></i>
-                                    <h3>Vote</h3>
-                                    <p class="text-muted">Since this theme is MIT licensed, you can use it
-                                        commercially!</p>
+                                    <div class="piece-div">
+                                        <img src="img/piece/piece_sharp.png" class="piece">
+                                    </div>
+                                    <h3>샤프</h3>
+                                    <p class="text-muted">문구점에서 흔히 볼 수 있는 1000원짜리 샤프</p>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="feature-item">
-                                    <i class="glyphicon glyphicon-list-alt text-primary"></i>
-                                    <h3>Vote</h3>
-                                    <p class="text-muted">Since this theme is MIT licensed, you can use it
-                                        commercially!</p>
+                                    <div class="piece-div">
+                                        <img src="img/piece/piece_boardmarker.png" class="piece">
+                                    </div>
+                                    <h3>보드마커</h3>
+                                    <p class="text-muted">옷에 묻으면 욕부터 나오는 보드마커</p>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="feature-item">
-                                    <i class="glyphicon glyphicon-repeat text-primary"></i>
-                                    <h3>to PowerPoint</h3>
-                                    <p class="text-muted">As always, this theme is free to download and use for any
-                                        purpose!</p>
+                                    <div class="piece-div">
+                                        <img src="img/piece/piece_munjin.png" class="piece">
+                                    </div>
+                                    <h3>문진</h3>
+                                    <p class="text-muted">서예 시간에 쓰던 문진. 미술실에서 훔쳤다.</p>
                                 </div>
                             </div>
                         </div>
@@ -222,12 +212,12 @@
                     <p>Some text in the modal.</p>
                     <input class="form-control" name="nickname" type="text" placeholder="Insert your nickname.">
                     <br>
-                    <input class="form-control" name="topic" type="text" placeholder="Insert topic.">
+                    <input class="form-control" name="topic" type="text" placeholder="Insert title.">
                 </div>
                 <div class="modal-footer">
-                    <button style="width: 45%;" type="button" class="btn btn-default" data-dismiss="modal">Create!
+                    <button style="width: 45%;" type="button" class="btn btn-default" data-dismiss="modal">방 만들기
                     </button>
-                    <button style="width: 45%;" type="button" class="btn btn-default" data-dismiss="modal">Cancel
+                    <button style="width: 45%;" type="button" class="btn btn-default" data-dismiss="modal">취소
                     </button>
                 </div>
             </div>
@@ -250,9 +240,9 @@
                     <input class="form-control" name="inviteCode" type="text" placeholder="Insert invite code.">
                 </div>
                 <div class="modal-footer">
-                    <button style="width: 45%;" type="button" class="btn btn-default" data-dismiss="modal">Join!
+                    <button style="width: 45%;" type="button" class="btn btn-default" data-dismiss="modal">입장하기
                     </button>
-                    <button style="width: 45%;" type="button" class="btn btn-default" data-dismiss="modal">Cancel
+                    <button style="width: 45%;" type="button" class="btn btn-default" data-dismiss="modal">취소
                     </button>
                 </div>
             </div>
@@ -273,9 +263,9 @@
                     <input class="form-control" name="nickname" type="text" placeholder="Insert your nickname.">
                 </div>
                 <div class="modal-footer">
-                    <button style="width: 45%;" type="button" class="btn btn-default" data-dismiss="modal">Join!
+                    <button style="width: 45%;" type="button" class="btn btn-default" data-dismiss="modal">입장하기
                     </button>
-                    <button style="width: 45%;" type="button" class="btn btn-default" data-dismiss="modal">Cancel
+                    <button style="width: 45%;" type="button" class="btn btn-default" data-dismiss="modal">취소
                     </button>
                 </div>
             </div>

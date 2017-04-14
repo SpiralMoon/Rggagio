@@ -31,18 +31,20 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <link href="css/rggagio.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
 
-<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+<nav id="mainNav" class="navbar navbar-default navbar-fixed-top" style="background: black">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                     data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand page-scroll" href="index.html">
+            <a class="navbar-brand page-scroll" href="#backModal" data-toggle="modal">
                 <i class="glyphicon glyphicon-arrow-left"></i>
             </a>
         </div>
@@ -68,17 +70,25 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3"> <!-- 채팅창 -->
-                    <input type="text" style="width:100%; height:600px"><br><br>
-                    <input type="text" style="width:100%;">
+
+                    <div id="chatList" style="width:100%; height:500px; border:1px solid; overflow: auto;">
+                        <p class="chat">test</p>
+                        <p class="chat">test</p>
+                    </div>
+                    <br>
+                    <input id="chatField" type="text" placeholder="채팅을 입력하세요." style="width:100%;">
                 </div>
                 <div class="col-md-9"> <!-- 인 게임 -->
                     <div class="row">
                         <div id="canvasDiv" class="col-md-12">
-                            <div id="canvas" style="border: solid;"></div>
+                            <div id="canvas board" style="border: solid; width: 100%; height: 500px; background-image: url('img/game/desk.png');">
+                          </div>
                         </div>
                     </div>
                     <div class="row" align="right">
-                        <a class="btn">항복</a>
+                        <button type="button" class="btn btn-default btn-lg" href="#backModal" data-toggle="modal">
+                            <span class="glyphicon glyphicon-flag" aria-hidden="true"></span> 항복
+                        </button>
                     </div>
                 </div>
             </div>
@@ -86,26 +96,26 @@
     </article>
 </section>
 
-<footer>
-    <div class="container">
-        <p>&copy; 2016 Start Bootstrap. All Rights Reserved.</p>
-        <p>Created By</p>
-        <ul class="list-inline">
-            <li>
-                <a href="https://github.com/hangole1999" target="_blank">hangole</a>
-            </li>
-            <li>
-                <a href="https://github.com/scala-in" target="_blank">scala-in</a>
-            </li>
-            <li>
-                <a href="https://github.com/eogur1016" target="_blank">eogur1016</a>
-            </li>
-            <li>
-                <a href="https://github.com/chamchwi" target="_blank">Spiral Moon</a>
-            </li>
-        </ul>
-    </div>
-</footer>
+<!--<footer>-->
+    <!--<div class="container">-->
+        <!--<p>&copy; 2016 Start Bootstrap. All Rights Reserved.</p>-->
+        <!--<p>Created By</p>-->
+        <!--<ul class="list-inline">-->
+            <!--<li>-->
+                <!--<a href="https://github.com/hangole1999" target="_blank">hangole</a>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<a href="https://github.com/scala-in" target="_blank">scala-in</a>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<a href="https://github.com/eogur1016" target="_blank">eogur1016</a>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<a href="https://github.com/chamchwi" target="_blank">Spiral Moon</a>-->
+            <!--</li>-->
+        <!--</ul>-->
+    <!--</div>-->
+<!--</footer>-->
 
 <!-- Modal -->
 <div id="codeModal" class="modal fade" role="dialog">
@@ -119,7 +129,29 @@
                 <p>초대코드 출력</p>
             </div>
             <div class="modal-footer">
-                <button style="width: 45%;" type="button" class="btn btn-default" data-dismiss="modal">Cancel
+                <button style="width: 45%;" type="button" class="btn btn-default" data-dismiss="modal">확인
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="backModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">
+                    <span class="glyphicon glyphicon-flag" aria-hidden="true"></span> 항복선언
+                </h4>
+            </div>
+            <div class="modal-body">
+                <p>현재 진행중인 게임에 <strong>항복</strong>을 선언하고 메인으로 나가시겠습니까?</p>
+            </div>
+            <div class="modal-footer">
+                <button style="width: 45%;" type="button" class="btn btn-default" data-dismiss="modal">항복
+                </button>
+                <button style="width: 45%;" type="button" class="btn btn-default" data-dismiss="modal">취소
                 </button>
             </div>
         </div>
@@ -138,6 +170,21 @@
 <!-- Theme JavaScript -->
 <script src="js/new-age.min.js"></script>
 
+<!-- My JavaScript -->
+<script src="js/chat.js"></script>
+<script src="js/timer.js"></script>
+<script>
+    runTimer();
+
+    $(document).ready(function () {
+
+        //Enter가 눌리면 채팅 데이터 전송
+        $("#chatField").keydown(function (event) {
+            if (event.keyCode == 13)
+                onSendChat(id, nickname, message);
+        });
+    });
+</script>
 <!-- Physics JS -->
 <script src="js/physicsjs-full.min.js" type="text/javascript"></script>
 
@@ -146,6 +193,5 @@
 
 <!-- Game Script -->
 <script src="js/index.js" type="text/javascript"></script>
-
 </body>
 </html>
