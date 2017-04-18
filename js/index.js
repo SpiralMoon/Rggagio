@@ -8,8 +8,8 @@ Physics({
     integrator: 'verlet'
 }, function(world){
 
-    var viewWidth = 600;
-    var viewHeight = 600;
+    var viewWidth = 700;
+    var viewHeight = 500;
 
     var renderer = Physics.renderer('pixi', {
         el: 'canvas', // The DOM element to append the stage to
@@ -33,7 +33,7 @@ Physics({
 
     var initVelocityRange = 2;
 
-    var chalk = Physics.body('rectangle', {
+    var choke = Physics.body('rectangle', {
         x: 50,
         y: 50,
         vx: Math.random() * initVelocityRange - initVelocityRange/2,
@@ -41,26 +41,26 @@ Physics({
         width: 135,
         height: 12.5
     });
-    chalk.view = renderer.createDisplay('sprite', {
-        texture: 'img/chalk.png',
+    choke.view = renderer.createDisplay('sprite', {
+        texture: 'img/piece/choke.png',
         anchor: {
             x: 0.5,
             y: 0.5
         }
     });
-    chalk.view.transform.scale._x = 0.5;
-    chalk.view.transform.scale._y = 0.5;
+    choke.view.transform.scale._x = 0.5;
+    choke.view.transform.scale._y = 0.5;
 
     var ruler = Physics.body('rectangle', {
         x: Math.random() * viewWidth,
         y: Math.random() * viewHeight,
         vx: Math.random() * initVelocityRange - initVelocityRange/2,
         vy: Math.random() * initVelocityRange - initVelocityRange/2,
-        width: 240,
-        height: 50
+        width: 320,
+        height: 70
     });
     ruler.view = renderer.createDisplay('sprite', {
-        texture: 'img/ruler.png',
+        texture: 'img/piece/ruler.png',
         anchor: {
             x: 0.5,
             y: 0.5
@@ -69,34 +69,34 @@ Physics({
     ruler.view.transform.scale._x = 0.5;
     ruler.view.transform.scale._y = 0.5;
 
-    var sharp = Physics.body('rectangle', {
+    var sharpe = Physics.body('rectangle', {
         x: Math.random() * viewWidth,
         y: Math.random() * viewHeight,
         vx: Math.random() * initVelocityRange - initVelocityRange/2,
         vy: Math.random() * initVelocityRange - initVelocityRange/2,
-        width: 210,
-        height: 15
+        width: 240,
+        height: 13
     });
-    sharp.view = renderer.createDisplay('sprite', {
-        texture: 'img/sharp.png',
+    sharpe.view = renderer.createDisplay('sprite', {
+        texture: 'img/piece/sharpe.png',
         anchor: {
             x: 0.5,
             y: 0.5
         }
     });
-    sharp.view.transform.scale._x = 0.5;
-    sharp.view.transform.scale._y = 0.5;
+    sharpe.view.transform.scale._x = 0.5;
+    sharpe.view.transform.scale._y = 0.5;
 
     var ballpen = Physics.body('rectangle', {
         x: Math.random() * viewWidth,
         y: Math.random() * viewHeight,
         vx: Math.random() * initVelocityRange - initVelocityRange/2,
         vy: Math.random() * initVelocityRange - initVelocityRange/2,
-        width: 210,
-        height: 15
+        width: 230,
+        height: 12
     });
     ballpen.view = renderer.createDisplay('sprite', {
-        texture: 'img/ballpen.png',
+        texture: 'img/piece/ballpen.png',
         anchor: {
             x: 0.5,
             y: 0.5
@@ -110,11 +110,11 @@ Physics({
         y: Math.random() * viewHeight,
         vx: Math.random() * initVelocityRange - initVelocityRange/2,
         vy: Math.random() * initVelocityRange - initVelocityRange/2,
-        width: 210,
-        height: 15
+        width: 230,
+        height: 30
     });
     boardMaker.view = renderer.createDisplay('sprite', {
-        texture: 'img/boardMaker.png',
+        texture: 'img/piece/boardMaker.png',
         anchor: {
             x: 0.5,
             y: 0.5
@@ -128,11 +128,11 @@ Physics({
         y: Math.random() * viewHeight,
         vx: Math.random() * initVelocityRange - initVelocityRange/2,
         vy: Math.random() * initVelocityRange - initVelocityRange/2,
-        width: 210,
-        height: 15
+        width: 50,
+        height: 190
     });
     glueStick.view = renderer.createDisplay('sprite', {
-        texture: 'img/glueStick.png',
+        texture: 'img/piece/glueStick.png',
         anchor: {
             x: 0.5,
             y: 0.5
@@ -146,11 +146,11 @@ Physics({
         y: Math.random() * viewHeight,
         vx: Math.random() * initVelocityRange - initVelocityRange/2,
         vy: Math.random() * initVelocityRange - initVelocityRange/2,
-        width: 210,
-        height: 15
+        width: 280,
+        height: 30
     });
     paperweight.view = renderer.createDisplay('sprite', {
-        texture: 'img/paperweight.png',
+        texture: 'img/piece/paperweight.png',
         anchor: {
             x: 0.5,
             y: 0.5
@@ -164,11 +164,11 @@ Physics({
         y: Math.random() * viewHeight,
         vx: Math.random() * initVelocityRange - initVelocityRange/2,
         vy: Math.random() * initVelocityRange - initVelocityRange/2,
-        width: 210,
-        height: 15
+        width: 50,
+        height: 20
     });
     clip.view = renderer.createDisplay('sprite', {
-        texture: 'img/clip.png',
+        texture: 'img/piece/clip.png',
         anchor: {
             x: 0.5,
             y: 0.5
@@ -182,11 +182,11 @@ Physics({
         y: Math.random() * viewHeight,
         vx: Math.random() * initVelocityRange - initVelocityRange/2,
         vy: Math.random() * initVelocityRange - initVelocityRange/2,
-        width: 210,
+        width: 180,
         height: 15
     });
     crayon.view = renderer.createDisplay('sprite', {
-        texture: 'img/crayon.png',
+        texture: 'img/piece/crayon.png',
         anchor: {
             x: 0.5,
             y: 0.5
@@ -201,10 +201,10 @@ Physics({
         vx: Math.random() * initVelocityRange - initVelocityRange/2,
         vy: Math.random() * initVelocityRange - initVelocityRange/2,
         width: 210,
-        height: 15
+        height: 30
     });
     cutter.view = renderer.createDisplay('sprite', {
-        texture: 'img/cutter.png',
+        texture: 'img/piece/cutter.png',
         anchor: {
             x: 0.5,
             y: 0.5
@@ -218,11 +218,11 @@ Physics({
         y: Math.random() * viewHeight,
         vx: Math.random() * initVelocityRange - initVelocityRange/2,
         vy: Math.random() * initVelocityRange - initVelocityRange/2,
-        width: 210,
-        height: 15
+        width: 80,
+        height: 80
     });
     eraser.view = renderer.createDisplay('sprite', {
-        texture: 'img/eraser.png',
+        texture: 'img/piece/eraser.png',
         anchor: {
             x: 0.5,
             y: 0.5
@@ -236,11 +236,11 @@ Physics({
         y: Math.random() * viewHeight,
         vx: Math.random() * initVelocityRange - initVelocityRange/2,
         vy: Math.random() * initVelocityRange - initVelocityRange/2,
-        width: 210,
+        width: 190,
         height: 15
     });
     pencel.view = renderer.createDisplay('sprite', {
-        texture: 'img/pencel.png',
+        texture: 'img/piece/pencel.png',
         anchor: {
             x: 0.5,
             y: 0.5
@@ -254,11 +254,11 @@ Physics({
         y: Math.random() * viewHeight,
         vx: Math.random() * initVelocityRange - initVelocityRange/2,
         vy: Math.random() * initVelocityRange - initVelocityRange/2,
-        width: 210,
-        height: 15
+        width: 290,
+        height: 80
     });
     pencilCase.view = renderer.createDisplay('sprite', {
-        texture: 'img/pencilCase.png',
+        texture: 'img/piece/pencilCase.png',
         anchor: {
             x: 0.5,
             y: 0.5
@@ -267,16 +267,15 @@ Physics({
     pencilCase.view.transform.scale._x = 0.5;
     pencilCase.view.transform.scale._y = 0.5;
 
-    var tape = Physics.body('rectangle', {
+    var tape = Physics.body('circle', {
         x: Math.random() * viewWidth,
         y: Math.random() * viewHeight,
         vx: Math.random() * initVelocityRange - initVelocityRange/2,
         vy: Math.random() * initVelocityRange - initVelocityRange/2,
-        width: 210,
-        height: 15
+        radius: 40
     });
     tape.view = renderer.createDisplay('sprite', {
-        texture: 'img/tape.png',
+        texture: 'img/piece/tape.png',
         anchor: {
             x: 0.5,
             y: 0.5
@@ -297,15 +296,14 @@ Physics({
 
     var viewportBounds = Physics.aabb(0, 0, viewWidth, viewHeight);
 
-    objs.push(chalk);
+    objs.push(choke);
     objs.push(ruler);
-    objs.push(sharp);
+    objs.push(sharpe);
     objs.push(ballpen);
     objs.push(boardMaker);
     objs.push(glueStick);
     objs.push(paperweight);
     objs.push(clip);
-    objs.push(crayon);
     objs.push(crayon);
     objs.push(cutter);
     objs.push(eraser);
