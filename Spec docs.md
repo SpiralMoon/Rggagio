@@ -9,12 +9,16 @@
  * Client to Server : { "event" : "join_random", "nickname" : string } //랜덤 입장
  * Server to Client : { "success" : bool, "id" : string }
 ## 게임시작
- * Server to Client : { "event" : "initialize", "my_turn" : bool } //게임시작 초기화 작업
+ * Server to Client : { "event" : "initialize", "my_turn" : bool,
+                         "piece_info" : [{ "id" : int, "x" : int, "y" : int, "rotation" : double }] } //게임시작 초기화 작업
 ## 채팅
  * Client to Server : { "event" : "chat", "id" : string, "nickname" : string, "message" : string }
  * Server to Client : { "event" : "chat", "id" : string, "nickname" : string, "message" : string }
 ## 게임진행
- * Client to Server : {  } //말 튕기기
+ * Client to Server : { "event" : "", "id" : string, "piece_id" : int, "destination_x" : int, "destination_y" : int } //말 튕기기
+ * Server to Client : { "event" : "", "id" : string, "piece_id" : int, "destination_x" : int, "destination_y" : int }
+## 게임종료
+ * Client to Server : {  }
  * Server to Client : {  }
 ## 항복선언
  * Client to Server : { "event" : "surrender", "id" : string }
