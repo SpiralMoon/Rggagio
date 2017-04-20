@@ -349,6 +349,4 @@ Physics({
     });
     // start the ticker
     Physics.util.ticker.start();
-
-    console.log(chalk);
 });
