@@ -1,9 +1,8 @@
-
 Physics({
     timestep: 1000.0 / 160,
     maxIPF: 16,
     integrator: 'verlet'
-}, function(world){
+}, function(world) {
 
     var clickedPosition = {x: 0, y: 0};
     var clickedObject = null;
@@ -51,8 +50,6 @@ Physics({
         height: viewHeight,
         meta: true
     });
-
-    console.log(renderer);
 
     world.on('step', function(){
         world.render();
@@ -406,4 +403,3 @@ Physics({
     });
     Physics.util.ticker.start();
 });
-
