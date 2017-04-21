@@ -33,6 +33,18 @@
     <![endif]-->
 
     <link href="css/rggagio.css" rel="stylesheet">
+
+    <style>
+        * {
+            cursor: default;
+            user-drag: none;
+            user-select: none;
+            -moz-user-select: none;
+            -webkit-user-drag: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+        }
+    </style>
 </head>
 
 <body id="page-top">
@@ -172,19 +184,19 @@
 
 <!-- My JavaScript -->
 <script src="js/chat.js"></script>
-<script src="js/timer.js"></script>
-<script>
-    runTimer();
+<!--<script src="js/timer.js"></script>-->
+<!--<script>-->
+    <!--runTimer();-->
 
-    $(document).ready(function () {
+    <!--$(document).ready(function () {-->
 
-        //Enter가 눌리면 채팅 데이터 전송
-        $("#chatField").keydown(function (event) {
-            if (event.keyCode == 13)
-                onSendChat(id, nickname, message);
-        });
-    });
-</script>
+        <!--//Enter가 눌리면 채팅 데이터 전송-->
+        <!--$("#chatField").keydown(function (event) {-->
+<!--//            if (event.keyCode == 13)-->
+<!--//                onSendChat(id, nickname, message);-->
+        <!--});-->
+    <!--});-->
+<!--</script>-->
 <!-- Physics JS -->
 <script src="js/physicsjs-full.min.js" type="text/javascript"></script>
 
