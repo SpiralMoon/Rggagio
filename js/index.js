@@ -1,288 +1,344 @@
 Physics({
-    // set the timestep
     timestep: 1000.0 / 160,
-    // maximum number of iterations per step
     maxIPF: 16,
-    // set the integrator (may also be set with world.add())
     integrator: 'verlet'
 }, function(world) {
 
-    var viewWidth = 600;
-    var viewHeight = 600;
+    var clickedPosition = {x: 0, y: 0};
+    var clickedObject = null;
+
+    function onDownCanvas(event) {
+        clickedPosition.x = event.x - this.getBoundingClientRect().left;
+        clickedPosition.y = event.y - this.getBoundingClientRect().top;
+
+        clickedObject = world.findOne({ $at: new Physics.vector( clickedPosition.x, clickedPosition.y ) });
+
+        if (clickedObject == false || clickedObject == undefined)
+            clickedObject = null;
+    }
+    function onUpCanvas(event) {
+        if (clickedObject == null)
+            return;
+
+        clickedObject.state.vel.add((clickedPosition.x - (event.x - this.getBoundingClientRect().left)) * 0.03, (clickedPosition.y - (event.y - this.getBoundingClientRect().top)) * 0.03);
+        clickedObject.sleep(false);
+
+        clickedObject = null;
+        clickedPosition.x = 0;
+        clickedPosition.y = 0;
+    }
+
+    var canvas = document.getElementById("canvas");
+
+    canvas.onmousedown = onDownCanvas;
+    canvas.onmouseup = onUpCanvas;
+
+    function onResizing() {
+        clickedObject = null;
+        clickedPosition.x = 0;
+        clickedPosition.y = 0;
+    }
+
+    window.onresize = onResizing;
+
+    var viewWidth = 700;
+    var viewHeight = 500;
 
     var renderer = Physics.renderer('pixi', {
-        el: 'canvas', // The DOM element to append the stage to
+        el: 'canvas',
         width: viewWidth,
         height: viewHeight,
-        meta: true // Turns debug info on/off
+        meta: true
     });
 
-    // render on each step
     world.on('step', function(){
         world.render();
     });
 
-    // world.on('interact:poke', function( data ){
-    //     console.log(data);
-    // }).on('interact:release', function( data ){
-    //     console.log(data);
-    // });
+    function Object(shape, collision, renderer, view) {
+        if (shape == 'rectangle')
+            this.body = Physics.body(shape, {
+                x: Math.random() * viewWidth, // collision.x
+                y: Math.random() * viewHeight, // collision.y
+                vx: Math.random() * 4 - 2,
+                vy: Math.random() * 4 - 2,
+                width: collision.width * 0.3,
+                height: collision.height * 0.3
+            });
+        else if (shape == 'circle')
+            this.body = Physics.body(shape, {
+                x: Math.random() * viewWidth, // collision.x
+                y: Math.random() * viewHeight, // collision.y
+                radius: collision.radius * ((0.3 + 0.3) * 0.5)
+            });
+        else
+            return null;
+
+        this.body.view = renderer.createDisplay('sprite', {
+            texture: view.texture,
+            anchor: {
+                x: 0.5,
+                y: 0.5
+            }
+        });
+        this.body.view.transform.scale.set(0.3, 0.3);
+
+        this.body.mass = collision.mass;
+    }
 
     var objs = [];
 
-    var initVelocityRange = 2;
-
-    var chalk = Physics.body('rectangle', {
-        x: 50,
-        y: 50,
-        vx: Math.random() * initVelocityRange - initVelocityRange/2,
-        vy: Math.random() * initVelocityRange - initVelocityRange/2,
-        width: 135,
-        height: 12.5
-    });
-    chalk.view = renderer.createDisplay('sprite', {
-        texture: 'img/piece/piece_chalk.png',
-        anchor: {
-            x: 0.5,
-            y: 0.5
+    var choke = new Object(
+        'rectangle',
+        {
+            x: 50,
+            y: 50,
+            width: 270,
+            height: 25,
+            mass: 0.5
+        },
+        renderer,
+        {
+            texture: 'img/piece/choke.png',
+            scale: {
+                x: 0.2,
+                y: 0.2
+            }
         }
-    });
-    chalk.view.transform.scale._x = 0.5;
-    chalk.view.transform.scale._y = 0.5;
-
-    var ruler = Physics.body('rectangle', {
-        x: Math.random() * viewWidth,
-        y: Math.random() * viewHeight,
-        vx: Math.random() * initVelocityRange - initVelocityRange/2,
-        vy: Math.random() * initVelocityRange - initVelocityRange/2,
-        width: 240,
-        height: 50
-    });
-    ruler.view = renderer.createDisplay('sprite', {
-        texture: 'img/piece/piece_ruler.png',
-        anchor: {
-            x: 0.5,
-            y: 0.5
+    );console.log(choke);
+    var ruler = new Object(
+        'rectangle',
+        {
+            x: 50,
+            y: 50,
+            width: 640,
+            height: 140,
+            mass: 1
+        },
+        renderer,
+        {
+            texture: 'img/piece/ruler.png',
+            scale: {
+                x: 0.2,
+                y: 0.2
+            }
         }
-    });
-    ruler.view.transform.scale._x = 0.5;
-    ruler.view.transform.scale._y = 0.5;
-
-    var sharp = Physics.body('rectangle', {
-        x: Math.random() * viewWidth,
-        y: Math.random() * viewHeight,
-        vx: Math.random() * initVelocityRange - initVelocityRange/2,
-        vy: Math.random() * initVelocityRange - initVelocityRange/2,
-        width: 210,
-        height: 15
-    });
-    sharp.view = renderer.createDisplay('sprite', {
-        texture: 'img/piece/piece_sharp.png',
-        anchor: {
-            x: 0.5,
-            y: 0.5
+    );
+    var sharpe = new Object(
+        'rectangle',
+        {
+            x: 50,
+            y: 50,
+            width: 480,
+            height: 26,
+            mass: 1
+        },
+        renderer,
+        {
+            texture: 'img/piece/sharpe.png',
+            scale: {
+                x: 0.2,
+                y: 0.2
+            }
         }
-    });
-    sharp.view.transform.scale._x = 0.5;
-    sharp.view.transform.scale._y = 0.5;
-
-    var ballpen = Physics.body('rectangle', {
-        x: Math.random() * viewWidth,
-        y: Math.random() * viewHeight,
-        vx: Math.random() * initVelocityRange - initVelocityRange/2,
-        vy: Math.random() * initVelocityRange - initVelocityRange/2,
-        width: 210,
-        height: 15
-    });
-    ballpen.view = renderer.createDisplay('sprite', {
-        texture: 'img/piece/piece_ballpen.png',
-        anchor: {
-            x: 0.5,
-            y: 0.5
+    );
+    var ballpen = new Object(
+        'rectangle',
+        {
+            x: 50,
+            y: 50,
+            width: 460,
+            height: 24,
+            mass: 1
+        },
+        renderer,
+        {
+            texture: 'img/piece/ballpen.png',
+            scale: {
+                x: 0.2,
+                y: 0.2
+            }
         }
-    });
-    ballpen.view.transform.scale._x = 0.5;
-    ballpen.view.transform.scale._y = 0.5;
-
-    var boardMaker = Physics.body('rectangle', {
-        x: Math.random() * viewWidth,
-        y: Math.random() * viewHeight,
-        vx: Math.random() * initVelocityRange - initVelocityRange/2,
-        vy: Math.random() * initVelocityRange - initVelocityRange/2,
-        width: 210,
-        height: 15
-    });
-    boardMaker.view = renderer.createDisplay('sprite', {
-        texture: 'img/piece/piece_boardmaker.png',
-        anchor: {
-            x: 0.5,
-            y: 0.5
+    );
+    var boardMaker = new Object(
+        'rectangle',
+        {
+            x: 50,
+            y: 50,
+            width: 460,
+            height: 60,
+            mass: 1
+        },
+        renderer,
+        {
+            texture: 'img/piece/boardMaker.png',
+            scale: {
+                x: 0.2,
+                y: 0.2
+            }
         }
-    });
-    boardMaker.view.transform.scale._x = 0.5;
-    boardMaker.view.transform.scale._y = 0.5;
-
-    var glueStick = Physics.body('rectangle', {
-        x: Math.random() * viewWidth,
-        y: Math.random() * viewHeight,
-        vx: Math.random() * initVelocityRange - initVelocityRange/2,
-        vy: Math.random() * initVelocityRange - initVelocityRange/2,
-        width: 210,
-        height: 15
-    });
-    glueStick.view = renderer.createDisplay('sprite', {
-        texture: 'img/piece/piece_gluestick.png',
-        anchor: {
-            x: 0.5,
-            y: 0.5
+    );
+    var glueStick = new Object(
+        'rectangle',
+        {
+            x: 50,
+            y: 50,
+            width: 100,
+            height: 380,
+            mass: 1
+        },
+        renderer,
+        {
+            texture: 'img/piece/glueStick.png',
+            scale: {
+                x: 0.2,
+                y: 0.2
+            }
         }
-    });
-    glueStick.view.transform.scale._x = 0.5;
-    glueStick.view.transform.scale._y = 0.5;
-
-    var paperweight = Physics.body('rectangle', {
-        x: Math.random() * viewWidth,
-        y: Math.random() * viewHeight,
-        vx: Math.random() * initVelocityRange - initVelocityRange/2,
-        vy: Math.random() * initVelocityRange - initVelocityRange/2,
-        width: 210,
-        height: 15
-    });
-    paperweight.view = renderer.createDisplay('sprite', {
-        texture: 'img/piece/piece_munjin.png',
-        anchor: {
-            x: 0.5,
-            y: 0.5
+    );
+    var paperweight = new Object(
+        'rectangle',
+        {
+            x: 50,
+            y: 50,
+            width: 560,
+            height: 60,
+            mass: 1
+        },
+        renderer,
+        {
+            texture: 'img/piece/paperweight.png',
+            scale: {
+                x: 0.2,
+                y: 0.2
+            }
         }
-    });
-    paperweight.view.transform.scale._x = 0.5;
-    paperweight.view.transform.scale._y = 0.5;
-
-    var clip = Physics.body('rectangle', {
-        x: Math.random() * viewWidth,
-        y: Math.random() * viewHeight,
-        vx: Math.random() * initVelocityRange - initVelocityRange/2,
-        vy: Math.random() * initVelocityRange - initVelocityRange/2,
-        width: 210,
-        height: 15
-    });
-    clip.view = renderer.createDisplay('sprite', {
-        texture: 'img/piece/piece_clip.png',
-        anchor: {
-            x: 0.5,
-            y: 0.5
+    );
+    var clip = new Object(
+        'rectangle',
+        {
+            x: 50,
+            y: 50,
+            width: 100,
+            height: 40,
+            mass: 1
+        },
+        renderer,
+        {
+            texture: 'img/piece/clip.png',
+            scale: {
+                x: 0.2,
+                y: 0.2
+            }
         }
-    });
-    clip.view.transform.scale._x = 0.5;
-    clip.view.transform.scale._y = 0.5;
-
-    var crayon = Physics.body('rectangle', {
-        x: Math.random() * viewWidth,
-        y: Math.random() * viewHeight,
-        vx: Math.random() * initVelocityRange - initVelocityRange/2,
-        vy: Math.random() * initVelocityRange - initVelocityRange/2,
-        width: 210,
-        height: 15
-    });
-    crayon.view = renderer.createDisplay('sprite', {
-        texture: 'img/piece/piece_crayon.png',
-        anchor: {
-            x: 0.5,
-            y: 0.5
+    );
+    var crayon = new Object(
+        'rectangle',
+        {
+            x: 50,
+            y: 50,
+            width: 360,
+            height: 30,
+            mass: 1
+        },
+        renderer,
+        {
+            texture: 'img/piece/crayon.png',
+            scale: {
+                x: 0.2,
+                y: 0.2
+            }
         }
-    });
-    crayon.view.transform.scale._x = 0.5;
-    crayon.view.transform.scale._y = 0.5;
-
-    var cutter = Physics.body('rectangle', {
-        x: Math.random() * viewWidth,
-        y: Math.random() * viewHeight,
-        vx: Math.random() * initVelocityRange - initVelocityRange/2,
-        vy: Math.random() * initVelocityRange - initVelocityRange/2,
-        width: 210,
-        height: 15
-    });
-    cutter.view = renderer.createDisplay('sprite', {
-        texture: 'img/piece/piece_cutter.png',
-        anchor: {
-            x: 0.5,
-            y: 0.5
+    );
+    var cutter = new Object(
+        'rectangle',
+        {
+            x: 50,
+            y: 50,
+            width: 420,
+            height: 60,
+            mass: 1
+        },
+        renderer,
+        {
+            texture: 'img/piece/cutter.png',
+            scale: {
+                x: 0.2,
+                y: 0.2
+            }
         }
-    });
-    cutter.view.transform.scale._x = 0.5;
-    cutter.view.transform.scale._y = 0.5;
-
-    var eraser = Physics.body('rectangle', {
-        x: Math.random() * viewWidth,
-        y: Math.random() * viewHeight,
-        vx: Math.random() * initVelocityRange - initVelocityRange/2,
-        vy: Math.random() * initVelocityRange - initVelocityRange/2,
-        width: 210,
-        height: 15
-    });
-    eraser.view = renderer.createDisplay('sprite', {
-        texture: 'img/piece/piece_eraser.png',
-        anchor: {
-            x: 0.5,
-            y: 0.5
+    );
+    var eraser = new Object(
+        'rectangle',
+        {
+            x: 50,
+            y: 50,
+            width: 160,
+            height: 160,
+            mass: 1
+        },
+        renderer,
+        {
+            texture: 'img/piece/eraser.png',
+            scale: {
+                x: 0.2,
+                y: 0.2
+            }
         }
-    });
-    eraser.view.transform.scale._x = 0.5;
-    eraser.view.transform.scale._y = 0.5;
-
-    var pencel = Physics.body('rectangle', {
-        x: Math.random() * viewWidth,
-        y: Math.random() * viewHeight,
-        vx: Math.random() * initVelocityRange - initVelocityRange/2,
-        vy: Math.random() * initVelocityRange - initVelocityRange/2,
-        width: 210,
-        height: 15
-    });
-    pencel.view = renderer.createDisplay('sprite', {
-        texture: 'img/piece/piece_pencel.png',
-        anchor: {
-            x: 0.5,
-            y: 0.5
+    );
+    var pencel = new Object(
+        'rectangle',
+        {
+            x: 50,
+            y: 50,
+            width: 380,
+            height: 30,
+            mass: 1
+        },
+        renderer,
+        {
+            texture: 'img/piece/pencel.png',
+            scale: {
+                x: 0.2,
+                y: 0.2
+            }
         }
-    });
-    pencel.view.transform.scale._x = 0.5;
-    pencel.view.transform.scale._y = 0.5;
-
-    var pencilCase = Physics.body('rectangle', {
-        x: Math.random() * viewWidth,
-        y: Math.random() * viewHeight,
-        vx: Math.random() * initVelocityRange - initVelocityRange/2,
-        vy: Math.random() * initVelocityRange - initVelocityRange/2,
-        width: 210,
-        height: 15
-    });
-    pencilCase.view = renderer.createDisplay('sprite', {
-        texture: 'img/piece/piece_pencilCase.png',
-        anchor: {
-            x: 0.5,
-            y: 0.5
+    );
+    var pencilCase = new Object(
+        'rectangle',
+        {
+            x: 50,
+            y: 50,
+            width: 580,
+            height: 160,
+            mass: 1
+        },
+        renderer,
+        {
+            texture: 'img/piece/pencilCase.png',
+            scale: {
+                x: 0.2,
+                y: 0.2
+            }
         }
-    });
-    pencilCase.view.transform.scale._x = 0.5;
-    pencilCase.view.transform.scale._y = 0.5;
-
-    var tape = Physics.body('rectangle', {
-        x: Math.random() * viewWidth,
-        y: Math.random() * viewHeight,
-        vx: Math.random() * initVelocityRange - initVelocityRange/2,
-        vy: Math.random() * initVelocityRange - initVelocityRange/2,
-        width: 210,
-        height: 15
-    });
-    tape.view = renderer.createDisplay('sprite', {
-        texture: 'img/piece/piece_tape.png',
-        anchor: {
-            x: 0.5,
-            y: 0.5
+    );
+    var tape = new Object(
+        'circle',
+        {
+            x: 50,
+            y: 50,
+            radius: 80,
+            mass: 1
+        },
+        renderer,
+        {
+            texture: 'img/piece/tape.png',
+            scale: {
+                x: 0.2,
+                y: 0.2
+            }
         }
-    });
-    tape.view.transform.scale._x = 0.5;
-    tape.view.transform.scale._y = 0.5;
+    );
 
     // for (var i = 0; i < 40; i++) {
     //     var obj = Physics.body('circle', {
@@ -294,17 +350,14 @@ Physics({
     //     objs.push(obj);
     // }
 
-    var viewportBounds = Physics.aabb(0, 0, viewWidth, viewHeight);
-
-    objs.push(chalk);
+    objs.push(choke);
     objs.push(ruler);
-    objs.push(sharp);
+    objs.push(sharpe);
     objs.push(ballpen);
     objs.push(boardMaker);
     objs.push(glueStick);
     objs.push(paperweight);
     objs.push(clip);
-    objs.push(crayon);
     objs.push(crayon);
     objs.push(cutter);
     objs.push(eraser);
@@ -313,11 +366,12 @@ Physics({
     objs.push(tape);
 
     for (var i in objs)
-        world.add(objs[i]);
+        world.add(objs[i].body);
+
+    var viewportBounds = Physics.aabb(0, 0, viewWidth, viewHeight);
 
     world.add([
         renderer,
-        Physics.behavior('interactive', { el: renderer.el }),
         Physics.behavior('sweep-prune'),
         Physics.behavior('body-collision-detection'),
         Physics.behavior('edge-collision-detection', {
@@ -334,19 +388,18 @@ Physics({
         })
     ]);
 
-    function applyFriction(objs, friction) {
+    function applyFriction(objs) {
         for (var i in objs) {
-            var obj = objs[i];
-            obj.state.vel.set(obj.state.vel.x * friction, obj.state.vel.y * friction);
-            obj.state.angular.vel = obj.state.angular.vel * friction;
+            var body = objs[i].body;
+            var frictionByMass = 0.8;
+            body.state.vel.set(body.state.vel.x * frictionByMass, body.state.vel.y * frictionByMass);
+            body.state.angular.vel = body.state.angular.vel * frictionByMass;
         }
     }
 
-    // subscribe to the ticker
     Physics.util.ticker.on(function( time ){
-        applyFriction(objs, 0.8);
+        applyFriction(objs);
         world.step( time );
     });
-    // start the ticker
     Physics.util.ticker.start();
 });
