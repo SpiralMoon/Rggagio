@@ -7,10 +7,28 @@ function send(string) {
 socket.onmessage = function (event) {
     var json = JSON.parse(event);
 
-    //if (채팅인 경우)
-    onReceivedChat(json.id, json.nickname, json.message);
-}
+    //채팅
+    if (json.event == "chat")
+        onReceivedChat(json.id, json.nickname, json.message);
+    //방 만들기 결과
+    else if (json.event == "create") {
+        if (json.success == true)
+            location.href = "game.html";
+    }
+    //방 입장 결과
+    else if (json.event == "join") {
+        if (json.event == true)
+            location.href = "game.html";
+    }
+    //게임 초기화
+    else if (json.event == "initialize") {
+        var piece_info = json.piece_info;
 
+        for (var i = 0; i < piece_info.length(); i++)
+            console.log(piece_info[i]); //TODO
+        //기물의정보를 json 배열로 받아와 index.js 스크립트에 적용한다.
+    }
+}
 
 socket.onerror = function (event) {
     console.log("socket error occur.");
