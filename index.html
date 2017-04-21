@@ -215,7 +215,7 @@
                     <input class="form-control" name="topic" type="text" placeholder="Insert title.">
                 </div>
                 <div class="modal-footer">
-                    <button style="width: 45%;" type="button" class="btn btn-default" data-dismiss="modal">방 만들기
+                    <button style="width: 45%;" type="button" class="btn btn-default" data-dismiss="modal" onclick="createRoom(nickname.value, topic.value)">방 만들기
                     </button>
                     <button style="width: 45%;" type="button" class="btn btn-default" data-dismiss="modal">취소
                     </button>
@@ -240,7 +240,7 @@
                     <input class="form-control" name="inviteCode" type="text" placeholder="Insert invite code.">
                 </div>
                 <div class="modal-footer">
-                    <button style="width: 45%;" type="button" class="btn btn-default" data-dismiss="modal">입장하기
+                    <button style="width: 45%;" type="button" class="btn btn-default" data-dismiss="modal" onclick="joinInvite(nickname.value, inviteCode.value)">입장하기
                     </button>
                     <button style="width: 45%;" type="button" class="btn btn-default" data-dismiss="modal">취소
                     </button>
@@ -263,7 +263,7 @@
                     <input class="form-control" name="nickname" type="text" placeholder="Insert your nickname.">
                 </div>
                 <div class="modal-footer">
-                    <button style="width: 45%;" type="button" class="btn btn-default" data-dismiss="modal">입장하기
+                    <button style="width: 45%;" type="button" class="btn btn-default" data-dismiss="modal" onclick="joinRandom(nickname.value)">입장하기
                     </button>
                     <button style="width: 45%;" type="button" class="btn btn-default" data-dismiss="modal">취소
                     </button>
@@ -284,6 +284,36 @@
 
 <!-- Theme JavaScript -->
 <script src="js/new-age.min.js"></script>
+
+<script>
+    /* 방 만들기 및 입장 */
+    function createRoom (nickname, title) {
+        var json = {
+            "event" : "create",
+            "nickname" : nickname,
+            "title" : title
+        };
+
+        send(json);
+    }
+    function joinInvite (nickname, inviteCode) {
+        var json = {
+            "event" : "join_invite",
+            "nickname" : nickname,
+            "invite_code" : inviteCode
+        };
+
+        send(json);
+    }
+    function joinRandom (nickname) {
+        var json = {
+            "event" : "join_random",
+            "nickname" : nickname
+        };
+
+        send(json);
+    }
+</script>
 
 </body>
 </html>
