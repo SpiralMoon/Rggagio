@@ -18,8 +18,8 @@
  * Client to Server : { "event" : "", "id" : string, "piece_id" : int, "destination_x" : int, "destination_y" : int } //말 튕기기
  * Server to Client : { "event" : "", "id" : string, "piece_id" : int, "destination_x" : int, "destination_y" : int }
 ## 게임종료
- * Client to Server : {  }
- * Server to Client : {  }
+ * Client to Server : { "event" : "end",  }
+ * Server to Client : { "event" : "end", "win" : bool }
 ## 항복선언
  * Client to Server : { "event" : "surrender", "id" : string }
- * Server to Client : {  }
+ * Server to Client : { "event" : "end", "win" : bool }
