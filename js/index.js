@@ -88,7 +88,7 @@ Physics({
 
     var objs = [];
 
-    var choke = new Object(
+    var chalk = new Object(
         'rectangle',
         {
             x: 50,
@@ -105,7 +105,7 @@ Physics({
                 y: 0.2
             }
         }
-    );console.log(choke);
+    );console.log(chalk);
     var ruler = new Object(
         'rectangle',
         {
@@ -350,7 +350,7 @@ Physics({
     //     objs.push(obj);
     // }
 
-    objs.push(choke);
+    objs.push(chalk);
     objs.push(ruler);
     objs.push(sharpe);
     objs.push(ballpen);
