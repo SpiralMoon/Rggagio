@@ -9,6 +9,8 @@ Physics({
     var clickedObject = null;
 
     function onDownCanvas(event) {
+        line.clear();
+
         clickedPosition.x = event.x - this.getBoundingClientRect().left;
         clickedPosition.y = event.y - this.getBoundingClientRect().top;
 
@@ -18,6 +20,8 @@ Physics({
             clickedObject = null;
     }
     function onUpCanvas(event) {
+        line.clear();
+
         if (clickedObject == null)
             return;
 
@@ -28,13 +32,28 @@ Physics({
         clickedPosition.x = 0;
         clickedPosition.y = 0;
     }
+    function onMoveCanvas(event) {
+        line.clear();
+
+        if (clickedObject == null)
+            return;
+
+        line.lineStyle(2, 0xffffff);
+        line.moveTo(clickedPosition.x, clickedPosition.y);
+        line.lineTo(event.x - this.getBoundingClientRect().left, event.y - this.getBoundingClientRect().top);
+        // line.moveTo(clickedObject.state.pos.x, clickedObject.state.pos.y);
+        // line.lineTo(clickedObject.state.pos.x - (clickedPosition.x - (event.x - this.getBoundingClientRect().left)), clickedObject.state.pos.y - (clickedPosition.y - (event.y - this.getBoundingClientRect().top)));
+        line.endFill();
+    }
 
     var canvas = document.getElementById("canvas");
 
     canvas.onmousedown = onDownCanvas;
     canvas.onmouseup = onUpCanvas;
+    canvas.onmousemove = onMoveCanvas;
 
     function onResizing() {
+        line.clear();
         clickedObject = null;
         clickedPosition.x = 0;
         clickedPosition.y = 0;
@@ -51,8 +70,6 @@ Physics({
         height: viewHeight,
         meta: true
     });
-
-    console.log(renderer);
 
     world.on('step', function(){
         world.render();
@@ -108,7 +125,7 @@ Physics({
                 y: 0.2
             }
         }
-    );console.log(choke);
+    );
     var ruler = new Object(
         'rectangle',
         {
@@ -343,15 +360,8 @@ Physics({
         }
     );
 
-    // for (var i = 0; i < 40; i++) {
-    //     var obj = Physics.body('circle', {
-    //         x: Math.random() * viewWidth,
-    //         y: Math.random() * viewHeight,
-    //         radius: 5 + Math.random() * 20
-    //     });
-    //     world.add(obj);
-    //     objs.push(obj);
-    // }
+    var line = new PIXI.Graphics();
+    renderer.stage.addChild(line);
 
     objs.push(choke);
     objs.push(ruler);
