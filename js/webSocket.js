@@ -28,6 +28,20 @@ socket.onmessage = function (event) {
             console.log(piece_info[i]); //TODO
         //기물의정보를 json 배열로 받아와 index.js 스크립트에 적용한다.
     }
+    //게임 진행
+    else if (json.event == "relay") {
+        //TODO 기물 움직임
+    }
+    //게임 종료
+    else if (json.event == "end") {
+        if (json.win) {
+            //TODO 승리 화면 출력
+        }
+        else {
+            //TODO 패배 화면 출력
+        }
+    }
+    
 }
 
 socket.onerror = function (event) {

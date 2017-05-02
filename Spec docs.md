@@ -15,8 +15,8 @@
  * Client to Server : { "event" : "chat", "id" : string, "nickname" : string, "message" : string }
  * Server to Client : { "event" : "chat", "id" : string, "nickname" : string, "message" : string }
 ## 게임진행
- * Client to Server : { "event" : "", "id" : string, "piece_id" : int, "destination_x" : int, "destination_y" : int } //말 튕기기
- * Server to Client : { "event" : "", "id" : string, "piece_id" : int, "destination_x" : int, "destination_y" : int }
+ * Client to Server : { "event" : "relay", "id" : string, "piece_id" : int, "destination_x" : int, "destination_y" : int } //말 튕기기
+ * Server to Client : { "event" : "relay", "id" : string, "piece_id" : int, "destination_x" : int, "destination_y" : int }
 ## 게임종료
  * Client to Server : { "event" : "end",  }
  * Server to Client : { "event" : "end", "win" : bool }
