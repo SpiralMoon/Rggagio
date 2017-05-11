@@ -10,16 +10,6 @@ socket.onmessage = function (event) {
     //채팅
     if (json.event == "chat")
         onReceivedChat(json.id, json.nickname, json.message);
-    //방 만들기 결과
-    else if (json.event == "create") {
-        if (json.success == true)
-            location.href = "game.html";
-    }
-    //방 입장 결과
-    else if (json.event == "join") {
-        if (json.event == true)
-            location.href = "game.html";
-    }
     //게임 초기화
     else if (json.event == "initialize") {
         var piece_info = json.piece_info;
