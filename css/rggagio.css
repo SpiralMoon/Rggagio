@@ -58,3 +58,7 @@
 #chatList {
     background-image: url('https://s3.ap-northeast-2.amazonaws.com/rggagio/image/game/chatList.jpg');
 }
+
+.game_container {
+    margin:0px;
+}

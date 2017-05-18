@@ -41,8 +41,8 @@ Physics({
 
     window.onresize = onResizing;
 
-    var viewWidth = 700;
-    var viewHeight = 500;
+    var viewWidth = 1000;
+    var viewHeight = 600;
 
     var renderer = Physics.renderer('pixi', {
         el: 'canvas',
