@@ -1,9 +1,8 @@
-
 Physics({
     timestep: 1000.0 / 160,
     maxIPF: 16,
     integrator: 'verlet'
-}, function(world){
+}, function(world) {
 
     var clickedPosition = {x: 0, y: 0};
     var clickedObject = null;
@@ -62,7 +61,7 @@ Physics({
     window.onresize = onResizing;
 
     var viewWidth = 700;
-    var viewHeight = 500;
+    var viewHeight = 600;
 
     var renderer = Physics.renderer('pixi', {
         el: 'canvas',
@@ -416,4 +415,3 @@ Physics({
     });
     Physics.util.ticker.start();
 });
-
