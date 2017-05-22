@@ -19,11 +19,6 @@
     <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
 
-    <!-- Plugin CSS -->
-    <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="lib/simple-line-icons/css/simple-line-icons.css">
-    <link rel="stylesheet" href="lib/device-mockups/device-mockups.min.css">
-
     <!-- Theme CSS -->
     <link href="css/new-age.min.css" rel="stylesheet">
 
@@ -32,6 +27,7 @@
     <![endif]-->
 
     <link href="css/rggagio.css" rel="stylesheet">
+    <link rel="icon" href="https://s3.ap-northeast-2.amazonaws.com/rggagio/image/game/icon.ico" type="image/x-icon">
 </head>
 
 <body id="page-top">
@@ -201,7 +197,7 @@
 
 <!-- Modal -->
 <div id="createModal" class="modal fade" role="dialog">
-    <form id="createForm">
+    <form id="createForm" action="/game.html">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -215,7 +211,7 @@
                     <input class="form-control" name="topic" type="text" placeholder="Insert title.">
                 </div>
                 <div class="modal-footer">
-                    <button style="width: 45%;" type="button" class="btn btn-default" data-dismiss="modal">방 만들기
+                    <button style="width: 45%;" type="submit" value="Submit" class="btn btn-default">방 만들기
                     </button>
                     <button style="width: 45%;" type="button" class="btn btn-default" data-dismiss="modal">취소
                     </button>
@@ -226,7 +222,7 @@
 </div>
 
 <div id="codeJoinModal" class="modal fade" role="dialog">
-    <form id="codeJoinForm">
+    <form id="codeJoinForm" action="/game.html">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -240,7 +236,7 @@
                     <input class="form-control" name="inviteCode" type="text" placeholder="Insert invite code.">
                 </div>
                 <div class="modal-footer">
-                    <button style="width: 45%;" type="button" class="btn btn-default" data-dismiss="modal">입장하기
+                    <button style="width: 45%;" type="submit" value="Submit" class="btn btn-default">입장하기
                     </button>
                     <button style="width: 45%;" type="button" class="btn btn-default" data-dismiss="modal">취소
                     </button>
@@ -251,7 +247,7 @@
 </div>
 
 <div id="randomJoinModal" class="modal fade" role="dialog">
-    <form id="randomJoinForm">
+    <form id="randomJoinForm" action="/game.html">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -263,7 +259,7 @@
                     <input class="form-control" name="nickname" type="text" placeholder="Insert your nickname.">
                 </div>
                 <div class="modal-footer">
-                    <button style="width: 45%;" type="button" class="btn btn-default" data-dismiss="modal">입장하기
+                    <button style="width: 45%;" type="submit" value="Submit" class="btn btn-default">입장하기
                     </button>
                     <button style="width: 45%;" type="button" class="btn btn-default" data-dismiss="modal">취소
                     </button>
@@ -284,6 +280,5 @@
 
 <!-- Theme JavaScript -->
 <script src="js/new-age.min.js"></script>
-
 </body>
 </html>

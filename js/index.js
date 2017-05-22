@@ -107,7 +107,7 @@ Physics({
 
     var objs = [];
 
-    var choke = new Object(
+    var chalk = new Object(
         'rectangle',
         {
             x: 50,
@@ -125,6 +125,7 @@ Physics({
             }
         }
     );
+  
     var ruler = new Object(
         'rectangle',
         {
@@ -362,7 +363,7 @@ Physics({
     var line = new PIXI.Graphics();
     renderer.stage.addChild(line);
 
-    objs.push(choke);
+    objs.push(chalk);
     objs.push(ruler);
     objs.push(sharpe);
     objs.push(ballpen);
