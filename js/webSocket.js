@@ -17,6 +17,9 @@ socket.onmessage = function (event) {
         for (var i = 0; i < piece_info.length(); i++)
             console.log(piece_info[i]); //TODO
         //기물의정보를 json 배열로 받아와 index.js 스크립트에 적용한다.
+
+        var blind = document.getElementById("blind");
+        blind.parentNode.removeChild(blind);
     }
     //게임 진행
     else if (json.event == "relay") {
