@@ -197,5 +197,51 @@
 
 <!-- Game Script -->
 <script src="js/index.js" type="text/javascript"></script>
+<script src="js/user.js"></script>
+<script>
+    //초기화 테스트
+    var json = {
+        "messageType": 1,
+        "first": false,
+        "user": [{
+            "id": -9870,
+            "nickname": "hyeri",
+            "objects": [{"type": 1, "degree": 25, "positionX": 500, "positionY": 400}, {
+                "type": 14,
+                "degree": 225,
+                "positionX": 200,
+                "positionY": 338
+            }]
+        }, {
+            "id": 35670,
+            "nickname": "yura",
+            "objects": [{"type": 2, "degree": 25, "positionX": 500, "positionY": 400}, {
+                "type": 14,
+                "degree": 225,
+                "positionX": 200,
+                "positionY": 338
+            }]
+        }]
+    };
+
+    //내 데이터는 인덱스 0에 있음
+    me = {
+        id: json.user[0].id,
+        nickname: json.user[0].nickname
+    };
+    enemy = {
+        id: json.user[1].id,
+        nickname: json.user[1].nickname
+    };
+    isMyturn = json.first;
+
+    //내 오브젝트 접근
+    //알 종류 : json.user[0].obejcts[i].type
+    //각도    : json.user[0].obejcts[i].degree
+    //좌표 X  : json.user[0].obejcts[i].positionX
+    //좌표 Y  : json.user[0].obejcts[i].positionY
+
+    //TODO 알 데이터 초기화
+</script>
 </body>
 </html>

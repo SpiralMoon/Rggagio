@@ -8,22 +8,19 @@ socket.onmessage = function (event) {
     var json = JSON.parse(event);
 
     //채팅
-    if (json.event == "chat")
+    if (json.messageType == "chat")
         onReceivedChat(json.id, json.nickname, json.message);
     //게임 초기화
-    else if (json.event == "initialize") {
-        var piece_info = json.piece_info;
+    else if (json.messageType == 1) {
+        //TODO
 
-        for (var i = 0; i < piece_info.length(); i++)
-            console.log(piece_info[i]); //TODO
-        //기물의정보를 json 배열로 받아와 index.js 스크립트에 적용한다.
     }
     //게임 진행
-    else if (json.event == "relay") {
+    else if (json.messageType == "relay") {
         //TODO 기물 움직임
     }
     //게임 종료
-    else if (json.event == "end") {
+    else if (json.messageType == "end") {
         if (json.win) {
             //TODO 승리 화면 출력
         }
@@ -31,7 +28,7 @@ socket.onmessage = function (event) {
             //TODO 패배 화면 출력
         }
     }
-    
+
 }
 
 socket.onerror = function (event) {
