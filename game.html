@@ -93,7 +93,7 @@
                 <div class="col-md-9"> <!-- 인 게임 -->
                     <div class="row">
                         <div id="canvasDiv" class="col-md-12">
-                            <div id="canvas" class="canvas board" style="border: solid; width: 700px; height: 600px; background-image: url('img/game/desk.png');">
+                            <div id="canvas" class="canvas board" style="border: solid; width: 700px; height: 600px;">
                           </div>
                         </div>
                     </div>
@@ -204,6 +204,49 @@
 <script src="js/pixi.min.js" type="text/javascript"></script>
 
 <!-- Game Script -->
+<script src="js/filter/filters.js" type="text/javascript"></script>
+<script>
+    //초기화 테스트
+    var json = {
+        "messageType": 1,
+        "first": false,
+        "user": [{
+            "id": -9870,
+            "nickname": "hyeri",
+            "objects": [{"type": 1, "degree": 25, "positionX": 200, "positionY": 100}, {
+                "type": 2,
+                "degree": 225,
+                "positionX": 500,
+                "positionY": 500
+            }]
+        }, {
+            "id": 35670,
+            "nickname": "yura",
+            "objects": [{"type": 4, "degree": 25, "positionX": 300, "positionY": 200}, {
+                "type": 4,
+                "degree": 225,
+                "positionX": 200,
+                "positionY": 338
+            }]
+        }]
+    };
+    //내 데이터는 인덱스 0에 있음
+    me = {
+        id: json.user[0].id,
+        nickname: json.user[0].nickname
+    };
+    enemy = {
+        id: json.user[1].id,
+        nickname: json.user[1].nickname
+    };
+    isMyturn = json.first;
+    //내 오브젝트 접근
+    //알 종류 : json.user[0].obejcts[i].type
+    //각도    : json.user[0].obejcts[i].degree
+    //좌표 X  : json.user[0].obejcts[i].positionX
+    //좌표 Y  : json.user[0].obejcts[i].positionY
+    //TODO 알 데이터 초기화
+</script>
 <script src="js/index.js" type="text/javascript"></script>
 </body>
 </html>
